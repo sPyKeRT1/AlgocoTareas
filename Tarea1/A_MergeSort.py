@@ -1,33 +1,31 @@
-def mergeSort(arr):
-    if len(arr) <= 1:
-        return arr
+from Leer import leerlista
 
-    mid = len(arr) // 2
-    leftHalf = arr[:mid]
-    rightHalf = arr[mid:]
+def merge_sort(lista):
+    if len(lista) <= 1:
+        return lista
+    
+    mitad = len(lista) // 2
+    izq = merge_sort(lista[:mitad])
+    der = merge_sort(lista[mitad:])
+    
+    return merge(izq, der)
 
-    sortedLeft = mergeSort(leftHalf)
-    sortedRight = mergeSort(rightHalf)
-
-    return merge(sortedLeft, sortedRight)
-
-def merge(left, right):
-    result = []
+def merge(izq, der):
+    merge = []
     i = j = 0
-
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i])
+    
+    while i < len(izq) and j < len(der):
+        if izq[i] < der[j]:
+            merge.append(izq[i])
             i += 1
         else:
-            result.append(right[j])
+            merge.append(der[j])
             j += 1
+    
+    merge.extend(izq[i:])
+    merge.extend(der[j:])
+    return merge
 
-    result.extend(left[i:])
-    result.extend(right[j:])
-
-    return result
-
-unsortedArr = [3, 7, 6, -10, 15, 23.5, 55, -13]
-sortedArr = mergeSort(unsortedArr)
-print("Sorted array:", sortedArr)
+listas = leerlista("listas_numeros.txt")
+for lista in listas:
+    print(merge_sort(lista))

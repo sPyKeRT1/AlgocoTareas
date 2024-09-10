@@ -1,3 +1,5 @@
+from Leer import leerlista
+
 def partition(array, low, high):
     pivot = array[high]
     i = low - 1
@@ -19,6 +21,7 @@ def quicksort(array, low=0, high=None):
         quicksort(array, low, pivot_index-1)
         quicksort(array, pivot_index+1, high)
 
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-quicksort(my_array)
-print("Sorted array:", my_array)
+listas = leerlista("listas_numeros.txt")
+for lista in listas:
+    quicksort(lista)
+    print(lista)
