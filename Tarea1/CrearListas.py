@@ -5,7 +5,7 @@ def generar_lista_aleatoria(n):
 
 def generar_lista_semi_ordenada(n):
     lista = sorted([random.randint(0, n) for _ in range(n)])
-    num_desordenados = n // 3
+    num_desordenados = n // 4
     for _ in range(num_desordenados):
         idx1 = random.randint(0, n - 1)
         idx2 = random.randint(0, n - 1)
