@@ -1,27 +1,27 @@
 from Leer import leerlista
 
-def partition(array, low, high):
-    pivot = array[high]
-    i = low - 1
+def particion(lista, menor, mayor):
+    pivote = lista[mayor]
+    i = menor - 1
 
-    for j in range(low, high):
-        if array[j] <= pivot:
+    for j in range(menor, mayor):
+        if lista[j] <= pivote:
             i += 1
-            array[i], array[j] = array[j], array[i]
+            lista[i], lista[j] = lista[j], lista[i]
 
-    array[i+1], array[high] = array[high], array[i+1]
+    lista[i+1], lista[mayor] = lista[mayor], lista[i+1]
     return i+1
 
-def quicksort(array, low=0, high=None):
-    if high is None:
-        high = len(array) - 1
+def quick_sort(lista, menor = 0, mayor = None):
+    if mayor is None:
+        mayor = len(lista) - 1
 
-    if low < high:
-        pivot_index = partition(array, low, high)
-        quicksort(array, low, pivot_index-1)
-        quicksort(array, pivot_index+1, high)
+    if menor < mayor:
+        indice_pivote = particion(lista, menor, mayor)
+        quick_sort(lista, menor, indice_pivote - 1)
+        quick_sort(lista, indice_pivote + 1, mayor)
 
 listas = leerlista("listas_numeros.txt")
 for lista in listas:
-    quicksort(lista)
+    quick_sort(lista)
     print(lista)
