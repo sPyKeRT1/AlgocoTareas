@@ -1,4 +1,5 @@
-from Leer import leerlista
+from Leer import leerlista #NECESARIO PARA LEER ENTRADAS
+import time #NECESARIO PARA MEDIR TIEMPOS
 
 def merge_sort(lista):
     if len(lista) <= 1:
@@ -26,6 +27,12 @@ def merge(izq, der):
     merge.extend(der[j:])
     return merge
 
+tiempos = []
 listas = leerlista("listas_numeros.txt")
 for lista in listas:
-    print(merge_sort(lista))
+    start_time = time.time()
+    merge_sort(lista)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    tiempos.append(elapsed_time)
+print("Tiempo promedio de ejecucion: ",sum(tiempos)/len(tiempos))

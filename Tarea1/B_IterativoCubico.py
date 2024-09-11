@@ -1,4 +1,5 @@
-from Leer import leermatrices
+from Leer import leermatrices #NECESARIO PARA LEER ENTRADAS
+import time #NECESARIO PARA MEDIR TIEMPOS
 
 def multiplicacion_matrices(A, B):
 
@@ -15,6 +16,12 @@ def multiplicacion_matrices(A, B):
 
     return C
 
+tiempos = []
 pares_matrices = leermatrices("pares_matrices.txt")
 for (A, B) in pares_matrices:
-    print(multiplicacion_matrices(A, B))
+    start_time = time.time()
+    multiplicacion_matrices(A, B)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    tiempos.append(elapsed_time)
+print("Tiempo promedio de ejecucion: ",sum(tiempos)/len(tiempos))

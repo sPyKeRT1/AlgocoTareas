@@ -1,4 +1,5 @@
-from Leer import leermatrices
+from Leer import leermatrices #NECESARIO PARA LEER ENTRADAS
+import time #NECESARIO PARA MEDIR TIEMPOS
 
 def transponer_matriz(Matriz):
     filas = len(Matriz)
@@ -21,6 +22,12 @@ def multiplicacion_matrices_optimizada(A, B):
 
     return C
 
+tiempos = []
 pares_matrices = leermatrices("pares_matrices.txt")
 for (A, B) in pares_matrices:
-    print( multiplicacion_matrices_optimizada(A, B))
+    start_time = time.time()
+    multiplicacion_matrices_optimizada(A, B)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    tiempos.append(elapsed_time)
+print("Tiempo promedio de ejecucion: ",sum(tiempos)/len(tiempos))

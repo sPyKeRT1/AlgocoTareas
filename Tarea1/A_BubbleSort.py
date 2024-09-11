@@ -1,4 +1,5 @@
-from Leer import leerlista
+from Leer import leerlista #NECESARIO PARA LEER ENTRADAS
+import time #NECESARIO PARA MEDIR TIEMPOS
 
 def bubble_sort(lista):
     n = len(lista)
@@ -9,8 +10,14 @@ def bubble_sort(lista):
                 lista[j], lista[j+1] = lista[j+1], lista[j]
                 intercambiado = True
         if not intercambiado: break
-    return lista
-           
+    return lista         
+
+tiempos = []
 listas = leerlista("listas_numeros.txt")
 for lista in listas:
-    print(bubble_sort(lista))
+    start_time = time.time()
+    bubble_sort(lista)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    tiempos.append(elapsed_time)
+print("Tiempo promedio de ejecucion: ",sum(tiempos)/len(tiempos))

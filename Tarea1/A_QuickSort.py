@@ -1,4 +1,5 @@
-from Leer import leerlista
+from Leer import leerlista #NECESARIO PARA LEER ENTRADAS
+import time #NECESARIO PARA MEDIR TIEMPOS
 
 def particion(lista, menor, mayor):
     pivote = lista[mayor]
@@ -21,7 +22,12 @@ def quick_sort(lista, menor = 0, mayor = None):
         quick_sort(lista, menor, indice_pivote - 1)
         quick_sort(lista, indice_pivote + 1, mayor)
 
+tiempos = []
 listas = leerlista("listas_numeros.txt")
 for lista in listas:
+    start_time = time.time()
     quick_sort(lista)
-    print(lista)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    tiempos.append(elapsed_time)
+print("Tiempo promedio de ejecucion: ",sum(tiempos)/len(tiempos))
